@@ -12,6 +12,11 @@
 <img src="${}">
 */
 window.addEventListener("load", function() {
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then(Function(response) {
+      response.json().then( function(json) {
+         console.log(json);
+      });   
+  });
    let form = document.querySelector("form");
    form.addEventListener("submit", function(event) {
       let pilotNameInput = document.querySelector("input[name=pilotName]");
