@@ -12,12 +12,27 @@
 <img src="${}">
 */
 window.addEventListener("load", function() {
-   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
-      response.json().then(function(json){
-         console.log(json);
-         return
-      });   
-  });
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+      response.json().then( function(json) {
+         function missionTarget(missionTarget) {
+            return `
+               <div class ="missionTarget">
+               <h2>Mission Destination</h2>
+               <ol>
+                  <li>Name: ${missionTarget.name}</li>
+                  <li>Diameter: ${json.diameter}</li>
+                  <li>Star: ${json.star}</li>
+                  <li>Distance from Earth: ${json.distance}</li>
+                  <li>Number of Moons: ${json.moons}</li>
+               </ol>
+               <img src="${json.image}">
+               </div>
+               `
+         };      
+      };
+   };
+});
+
    let form = document.querySelector("form");
    form.addEventListener("submit", function(event) {
       let pilotNameInput = document.querySelector("input[name=pilotName]");
