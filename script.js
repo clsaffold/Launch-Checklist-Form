@@ -14,23 +14,21 @@
 window.addEventListener("load", function() {
    fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
       response.json().then( function(json) {
-         function missionTarget(missionTarget) {
-            return `
-               <div class ="missionTarget">
-               <h2>Mission Destination</h2>
-               <ol>
-                  <li>Name: ${missionTarget.name}</li>
-                  <li>Diameter: ${json.diameter}</li>
-                  <li>Star: ${json.star}</li>
-                  <li>Distance from Earth: ${json.distance}</li>
-                  <li>Number of Moons: ${json.moons}</li>
-               </ol>
-               <img src="${json.image}">
-               </div>
-               `
-         };      
-      };
-   };
+          const div = document.getElementById("missiontarget");
+          div.missiontarget = `
+          <h2>Mission Destination</h2> 
+          <ol>
+               <li>Name: ${json.name}</li>
+               <li>Diameter: ${json.diameter}</li>
+               <li>Star: ${json.star}</li>
+               <li>Distance from Earth: ${json.distance}</li>
+               <li>Number of Moons: ${json.moons}</li>
+           </ol>
+           <img src="${json.image}">
+       `;
+       return
+      });
+   });
 });
 
    let form = document.querySelector("form");
@@ -42,7 +40,6 @@ window.addEventListener("load", function() {
       if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
          alert("All Field Are Required");
          event.preventDefault();
-      }
-      ;
+         return
+      };
    });
-});
